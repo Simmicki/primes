@@ -29,17 +29,16 @@ int main()
    myfile.open("prime.ini");
 
    if(myfile) {
-      cout << "config file exists." << endl;
-      cout << "reading: prime.ini: ";
+      cout << "config file exists" << endl;
+      cout << "reading: prime.ini" << endl;
       while ( getline (myfile,line) )
     {
-      cout << line << '\n' << '\n';
       stringstream ss;  
       ss << line;  
       ss >> startnum;
     }
     myfile.close();
-    cout << "done" << endl << endl;
+    cout << "continuing with: " << startnum << endl << endl;
     
    } else {
       cout << "prime.ini doesn't exist" << endl;
@@ -57,7 +56,7 @@ int main()
       isPrime = isPrimeNumber(n);
 
       if(isPrime == true){
-         cout<<left<<setw(24)<<n;
+         cout<<left<<setw(20)<<n;
          
 	  }
    }
@@ -90,3 +89,4 @@ void signalHandler( int signum ) {
    cout << "File saved, now terminating !";
    exit(signum);  
 }
+
