@@ -1,2 +1,2 @@
 # primes
-Finding primes
+Finding primes in c and c++
