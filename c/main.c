@@ -78,7 +78,7 @@ int main()
       }
       if(flag_var==0)
       
-         printf("%-16d",i);
+         printf("%-20d",i);
   }
   return 0;
 }
