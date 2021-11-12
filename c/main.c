@@ -20,11 +20,11 @@ void sigint_handler(int sig_num)
     setbuf(stdout, NULL);
     printf("\nInterrupt signal (%d) received.\n",sig_num);
     printf("Processing: %d\n",i);
+	printf("Saving progress to prime.ini\n");
     myfile = fopen ("prime.ini","w");
 	fprintf(myfile,"%d",i);
 	fclose(myfile);
-	printf("\nSaved progress to prime.ini\n");
-
+	printf("File saved, now terminating !\n");
 /* Do a graceful cleanup of the program like: free memory/resources/etc and exit */
     exit(0);
 }
@@ -50,7 +50,7 @@ int main()
 		fclose(myfile);
 		num1=i;
 		
-		printf("continuing with: %d\n",num1);
+		printf("continuing with: %d\n\n",num1);
 	}
 	else
 /* create config file */
