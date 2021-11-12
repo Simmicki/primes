@@ -34,8 +34,8 @@ int main()
 /* Remove cout buffer */
    setbuf(stdout, NULL);
    
-   int num1 = 2;
-   int num2 = 2147483647;
+   int startnum = 2;
+   int endnum = 2147483647;
    int flag_var, j;
    
    
@@ -47,9 +47,9 @@ int main()
 		printf("reading: prime.ini\n");
 		fscanf(myfile,"%d",&i);
 		fclose(myfile);
-		num1=i;
+		startnum=i;
 		
-		printf("continuing with: %d\n\n",num1);
+		printf("continuing with: %d\n\n",startnum);
 	}
 	else
 /* create config file */
@@ -63,8 +63,8 @@ int main()
 	}
  
 /* Display prime numbers for input range */
-   printf("Prime numbers from %d to %d are:\n", num1, num2);
-   for(i=num1+1; i<num2; ++i)
+   printf("Prime numbers from %d to %d are:\n", startnum, endnum);
+   for(i=startnum+1; i<endnum; ++i)
    {
       flag_var=0;
       for(j=2; j<=i/2; ++j)
