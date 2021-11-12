@@ -15,8 +15,7 @@ int i = 2;
 /* Signal Handler for SIGINT */
 void sigint_handler(int sig_num)
 {
-    /* Reset handler to catch SIGINT next time.
-       Refer http://en.cppreference.com/w/c/program/signal */
+    /* Reset handler to catch SIGINT next time. */
     setbuf(stdout, NULL);
     printf("\nInterrupt signal (%d) received.\n",sig_num);
     printf("Processing: %d\n",i);
