@@ -19,6 +19,7 @@ int main()
    
    bool isPrime;
    unsigned long long startnum;
+   unsigned long long endnum = 18446744073709551615u;
    string line;
    
    // register signal SIGINT and signal handler  
@@ -51,7 +52,7 @@ int main()
       startnum = 2;
    }
    
-   for(n = startnum; n < 18446744073709551615u; n++) {
+   for(n = startnum; n < endnum; n++) {
       // isPrime will be true for prime numbers
       isPrime = isPrimeNumber(n);
 
@@ -77,10 +78,11 @@ unsigned long long isPrimeNumber(unsigned long long n) {
 }
 
 void signalHandler( int signum ) {
-   cout << endl << "Interrupt signal (" << signum << ") received.\n";
+   cout << endl << "Interrupt signal (" << signum << ") received." << endl;
 
    // cleanup and close up stuff here  
    // terminate program
+   cout << "Saving progress to prime.ini" << endl;
    ofstream myfile;
    myfile.open("prime.ini");
    myfile << n << endl;
