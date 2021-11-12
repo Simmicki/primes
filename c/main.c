@@ -18,7 +18,7 @@ void sigint_handler(int sig_num)
     /* Reset handler to catch SIGINT next time.
        Refer http://en.cppreference.com/w/c/program/signal */
     setbuf(stdout, NULL);
-    printf("\nInterrupt signal received.\n");
+    printf("\nInterrupt signal (%d) received.\n",sig_num);
     printf("Processing: %d\n",i);
     myfile = fopen ("prime.ini","w");
 	fprintf(myfile,"%d",i);
