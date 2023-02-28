@@ -1,30 +1,30 @@
 /* Copyright © 2021 Michael Simonsen
- * Programnavn: primes
- */
-/* printf("%-16d",i); */
-   
+   Programname: primes */
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <signal.h>
-
+#include <stdint.h>
 
 FILE *myfile;
-int i = 2;
-
+unsigned long long int i = 2;
+unsigned long long int j;
+unsigned long long int num1 = 2;
+unsigned long long num2 = 18446744073709551615;
+/*unsigned long long int num2 = 200;*/
+unsigned long long int flag_var;
 
 /* Signal Handler for SIGINT */
 int sigint_handler(int sig_num)
 {
-    /* Reset handler to catch SIGINT next time. */
     setbuf(stdout, NULL);
     printf("\nInterrupt signal (%d) received.\n",sig_num);
-    printf("Processing: %d\n",i);
+    printf("Processing: %llu\n",i);
 	printf("Saving progress to prime.ini\n");
     myfile = fopen ("prime.ini","w");
-	fprintf(myfile,"%d",i);
+	fprintf(myfile,"%llu",i);
 	fclose(myfile);
 	printf("File saved, now terminating !\n");
-/* Do a graceful cleanup of the program like: free memory/resources/etc and exit */
     exit(0);
 }
 
@@ -34,22 +34,16 @@ int main()
 /* Remove cout buffer */
    setbuf(stdout, NULL);
    
-   int startnum = 2;
-   int endnum = 2147483647;
-   int flag_var, j;
-   
-   
 /* check if config file exist */
 	myfile=fopen ("prime.ini","r");
 	if (myfile)
 	{
 		printf("config file exists\n");
 		printf("reading: prime.ini\n");
-		fscanf(myfile,"%d",&i);
+		fscanf(myfile,"%llu",&i);
 		fclose(myfile);
-		startnum=i;
-		
-		printf("continuing with: %d\n\n",startnum);
+		num1=i;
+		printf("continuing with: %llu\n\n",num1);
 	}
 	else
 /* create config file */
@@ -61,10 +55,10 @@ int main()
 		fclose(myfile);
 		puts("done");
 	}
- 
-/* Display prime numbers for input range */
-   printf("Prime numbers from %d to %d are:\n", startnum, endnum);
-   for(i=startnum+1; i<endnum; ++i)
+
+/* Calculate and display prime numbers */
+   printf("Prime numbers from %llu:\n", num1);
+   for(i=num1+1; i<num2; ++i)
    {
       flag_var=0;
       for(j=2; j<=i/2; ++j)
@@ -76,8 +70,7 @@ int main()
          }
       }
       if(flag_var==0)
-      
-         printf("%-20d",i);
+         printf("%-20llu",i);
   }
   return 0;
 }
