@@ -10,7 +10,7 @@ FILE *myfile;
 unsigned long long i = 2;
 unsigned long long j;
 unsigned long long num1 = 2;
-unsigned long long num2 = 0xFFFFFFFFFFFFFFFF;
+unsigned long long num2 = 0xFFFFFFFFFFFFFFFFU;
 /*unsigned long long num2 = 200;*/
 unsigned long long flag_var;
 
