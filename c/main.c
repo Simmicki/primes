@@ -7,12 +7,12 @@
 #include <stdint.h>
 
 FILE *myfile;
-unsigned long long int i = 2;
-unsigned long long int j;
-unsigned long long int num1 = 2;
+unsigned long long i = 2;
+unsigned long long j;
+unsigned long long num1 = 2;
 unsigned long long num2 = 18446744073709551615;
-/*unsigned long long int num2 = 200;*/
-unsigned long long int flag_var;
+/*unsigned long long num2 = 200;*/
+unsigned long long flag_var;
 
 /* Signal Handler for SIGINT */
 int sigint_handler(int sig_num)
@@ -22,7 +22,7 @@ int sigint_handler(int sig_num)
     printf("Processing: %llu\n",i);
 	printf("Saving progress to prime.ini\n");
     myfile = fopen ("prime.ini","w");
-	fprintf(myfile,"%llu",i);
+	fprintf(myfile,"%llu\n",i);
 	fclose(myfile);
 	printf("File saved, now terminating !\n");
     exit(0);
@@ -51,7 +51,7 @@ int main()
 		printf("prime.ini doesn't exist\n");
 		printf("creating it now\n");
 		myfile = fopen ("prime.ini","w");
-		fprintf(myfile,"%d",2);
+		fprintf(myfile,"%d\n",2);
 		fclose(myfile);
 		puts("done");
 	}
