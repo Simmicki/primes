@@ -70,7 +70,7 @@ int main()
          }
       }
       if(flag_var==0)
-         printf("%-20llu",i);
+         printf("%-24llu",i);
   }
   return 0;
 }
