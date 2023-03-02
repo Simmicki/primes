@@ -15,7 +15,7 @@ unsigned long long num2 = 18446744073709551615;
 unsigned long long flag_var;
 
 /* Signal Handler for SIGINT */
-int sigint_handler(int sig_num)
+void sigint_handler(int sig_num)
 {
     setbuf(stdout, NULL);
     printf("\nInterrupt signal (%d) received.\n",sig_num);
