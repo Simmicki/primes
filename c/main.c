@@ -1,29 +1,32 @@
-/* Copyright © 2021 Michael Simonsen
-   Programname: primes */
+/* Copyright © 2021 Michael Simonsen Programname: primes */
 
 #include <stdio.h>
 #include <stdlib.h>
 #include <signal.h>
 #include <stdint.h>
+#include <time.h>
+#include <sys\stat.h>
 
-FILE *myfile;
+FILE *savefile;
 unsigned long long i = 2;
 unsigned long long j;
 unsigned long long num1 = 2;
 unsigned long long num2 = 0xFFFFFFFFFFFFFFFFU;
 /*unsigned long long num2 = 200;*/
 unsigned long long flag_var;
+struct stat status;
 
-/* Signal Handler for SIGINT */
-void sigint_handler(int sig_num)
+void sigint_handler(int sig_num) /* Signal Handler for SIGINT */
 {
     setbuf(stdout, NULL);
     printf("\nInterrupt signal (%d) received.\n",sig_num);
     printf("Processing: %llu\n",i);
 	printf("Saving progress to prime.ini\n");
-    myfile = fopen ("prime.ini","w");
-	fprintf(myfile,"%llu\n",i);
-	fclose(myfile);
+    savefile = fopen ("prime.ini","w+");
+    fstat(fileno(savefile),&status);
+    printf("File was last modified : %s",ctime(&status.st_mtime));
+	fprintf(savefile,"%llu\n",i);
+	fclose(savefile);
 	printf("File saved, now terminating !\n");
     exit(0);
 }
@@ -31,28 +34,26 @@ void sigint_handler(int sig_num)
 int main()
 {
    signal(SIGINT, sigint_handler);
-/* Remove cout buffer */
-   setbuf(stdout, NULL);
-   
-/* check if config file exist */
-	myfile=fopen ("prime.ini","r");
-	if (myfile)
+//   setbuf(stdout, NULL); /* Remove cout buffer */
+	savefile=fopen ("prime.ini","r"); /* check if config file exist */
+	if (savefile)
 	{
 		printf("config file exists\n");
+		fstat(fileno(savefile),&status);
+        printf("File was last modified : %s",ctime(&status.st_mtime));
 		printf("reading: prime.ini\n");
-		fscanf(myfile,"%llu",&i);
-		fclose(myfile);
+		fscanf(savefile,"%llu",&i);
+		fclose(savefile);
 		num1=i;
 		printf("continuing with: %llu\n\n",num1);
 	}
 	else
-/* create config file */
-	{
+	{ /* create config file */
 		printf("prime.ini doesn't exist\n");
 		printf("creating it now\n");
-		myfile = fopen ("prime.ini","w");
-		fprintf(myfile,"%d\n",2);
-		fclose(myfile);
+		savefile = fopen ("prime.ini","w");
+		fprintf(savefile,"%d\n",2);
+		fclose(savefile);
 		puts("done");
 	}
 
