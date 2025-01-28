@@ -41,7 +41,7 @@ int main()
 	{
 		printf("config file exists\n");
 		fstat(fileno(savefile),&status);
-        printf("File was last modified : %s",ctime(&status.st_mtime));
+    	printf("File was last modified : %s",ctime(&status.st_mtime));
 		printf("reading: prime.ini\n");
 		fscanf(savefile,"%llu",&i);
 		fclose(savefile);
