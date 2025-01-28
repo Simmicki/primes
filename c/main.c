@@ -19,29 +19,29 @@ struct stat status;
 
 void sigint_handler(int sig_num) /* Signal Handler for SIGINT */
 {
-    setbuf(stdout, NULL);
-    printf("\nInterrupt signal (%d) received.\n",sig_num);
-    printf("Processing: %llu\n",i);
+	setbuf(stdout, NULL);
+	printf("\nInterrupt signal (%d) received.\n",sig_num);
+	printf("Processing: %llu\n",i);
 	printf("Saving progress to prime.ini\n");
-    savefile = fopen ("prime.ini","w+");
-    fstat(fileno(savefile),&status);
-//    printf("File was last modified : %s",ctime(&status.st_mtime));
+	savefile = fopen ("prime.ini","w+");
+	fstat(fileno(savefile),&status);
+//	printf("File was last modified : %s",ctime(&status.st_mtime));
 	fprintf(savefile,"%llu\n",i);
 	fclose(savefile);
 	printf("File saved, now terminating !\n");
-    exit(0);
+	exit(0);
 }
 
 int main()
 {
    signal(SIGINT, sigint_handler);
-//   setbuf(stdout, NULL); /* Remove cout buffer */
+//	 setbuf(stdout, NULL); /* Remove cout buffer */
 	savefile=fopen ("prime.ini","r"); /* check if config file exist */
 	if (savefile)
 	{
 		printf("config file exists\n");
 		fstat(fileno(savefile),&status);
-    	printf("File was last modified : %s",ctime(&status.st_mtime));
+		printf("File was last modified : %s",ctime(&status.st_mtime));
 		printf("reading: prime.ini\n");
 		fscanf(savefile,"%llu",&i);
 		fclose(savefile);
@@ -62,17 +62,17 @@ int main()
    printf("Prime numbers from %llu:\n", num1);
    for(i=num1+1; i<num2; ++i)
    {
-      flag_var=0;
-      for(j=2; j<=i/2; ++j)
-      {
-         if(i%j==0)
-         {
-            flag_var=1;
-            break;
-         }
-      }
-      if(flag_var==0)
-         printf("%-24llu",i);
+	  flag_var=0;
+	  for(j=2; j<=i/2; ++j)
+	  {
+		 if(i%j==0)
+		 {
+			flag_var=1;
+			break;
+		 }
+	  }
+	  if(flag_var==0)
+		 printf("%-24llu",i);
   }
   return 0;
 }
