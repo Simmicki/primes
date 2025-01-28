@@ -1,4 +1,5 @@
-/* Copyright © 2021 Michael Simonsen Programname: primes */
+// Copyright © 2021 Michael Simonsen
+// Programname: primes
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -12,7 +13,7 @@ unsigned long long i = 2;
 unsigned long long j;
 unsigned long long num1 = 2;
 unsigned long long num2 = 0xFFFFFFFFFFFFFFFFU;
-/*unsigned long long num2 = 200;*/
+//unsigned long long num2 = 200;
 unsigned long long flag_var;
 struct stat status;
 
@@ -24,7 +25,7 @@ void sigint_handler(int sig_num) /* Signal Handler for SIGINT */
 	printf("Saving progress to prime.ini\n");
     savefile = fopen ("prime.ini","w+");
     fstat(fileno(savefile),&status);
-    printf("File was last modified : %s",ctime(&status.st_mtime));
+//    printf("File was last modified : %s",ctime(&status.st_mtime));
 	fprintf(savefile,"%llu\n",i);
 	fclose(savefile);
 	printf("File saved, now terminating !\n");
@@ -57,7 +58,7 @@ int main()
 		puts("done");
 	}
 
-/* Calculate and display prime numbers */
+// Calculate and display prime numbers
    printf("Prime numbers from %llu:\n", num1);
    for(i=num1+1; i<num2; ++i)
    {
